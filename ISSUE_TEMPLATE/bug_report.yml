@@ -1,0 +1,57 @@
+name: Bug report
+description: Report wrong results, crashes, misleading interfaces or unused code in an EASIFEM library.
+title: "[<UserType>] <Module>: <Severity>: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Title:** `[<UserType>] <Module>: <Severity>: <short title>`
+
+        - `<UserType>` is the type name without the trailing `_` (`Mesh_` becomes `Mesh`). Drop `[<UserType>] ` if the module has no type.
+        - `<Severity>` is `High` (wrong results, crashes, memory errors), `Medium` (wrong edge cases, misleading interfaces, inconsistent behaviour) or `Low` (missing overloads, style, docs, unused code).
+
+        Example: `[Mesh] Mesh_Class: High: GetNodeCoord returns wrong size for mixed meshes`
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: The file and procedure, as `File.F90:ProcedureName`.
+      placeholder: Mesh_GetMethods.F90:obj_GetNodeCoord
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is wrong and when it happens.
+    validations:
+      required: true
+  - type: textarea
+    id: reproducer
+    attributes:
+      label: Minimal reproducer
+      description: A short Fortran program, the name of a failing test, or the reasoning.
+      render: fortran
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+      description: What should happen and what happens.
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix
+      description: Optional. Options (a), (b) … with a recommendation.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Compiler and version, OS, and the commit you built from.
+      placeholder: |
+        gfortran 14.2, Arch Linux, base@1a2b3c4
+    validations:
+      required: true
